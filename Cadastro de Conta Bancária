@@ -1,0 +1,47 @@
+package Exercicos1;
+
+class SaldoInsuficienteException extends Exception {
+    public SaldoInsuficienteException(String mensagem) {
+        super(mensagem);
+    }
+}
+
+class ContaBancaria {
+    private double saldo;
+
+    public ContaBancaria(double saldoInicial) {
+        this.saldo = saldoInicial;
+    }
+
+    public void sacar(double valor) throws SaldoInsuficienteException {
+        if (valor > saldo) {
+            throw new SaldoInsuficienteException("Saldo insuficiente! Saldo atual: R$ " + saldo + " | Valor solicitado: R$ " + valor);
+        }
+        saldo -= valor;
+        System.out.println("Saque de R$ " + valor + " realizado com sucesso. Novo saldo: R$ " + saldo);
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
+
+public class TesteContaBancaria {
+    public static void main(String[] args) {
+        ContaBancaria conta = new ContaBancaria(500.0);
+
+        try {
+            System.out.println("--- Realizando Saque Válido ---");
+            conta.sacar(200.0);
+        } catch (SaldoInsuficienteException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        try {
+            System.out.println("\n--- Realizando Saque Inválido ---");
+            conta.sacar(400.0); // O saldo restante é 300.0
+        } catch (SaldoInsuficienteException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+}
