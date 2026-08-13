@@ -1,0 +1,27 @@
+package Exercicos1;
+
+import java.util.Scanner;
+
+public class ConversorNumerico {
+
+    // Método propaga NumberFormatException usando 'throws'
+    public static int converterParaInteiro(String texto) throws NumberFormatException {
+        return Integer.parseInt(texto);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um texto para converter em número: ");
+        String entrada = scanner.nextLine();
+
+        try {
+            int numero = converterParaInteiro(entrada);
+            System.out.println("Número convertido com sucesso: " + numero);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro: A string '" + entrada + "' contém caracteres inválidos e não pode ser convertida para inteiro.");
+        } finally {
+            scanner.close();
+        }
+    }
+}
