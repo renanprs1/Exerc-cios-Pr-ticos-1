@@ -1,0 +1,23 @@
+package Exercicos1;
+
+import java.util.Scanner;
+
+public class PossicaoArray {
+	public static void main(String[] args) {
+		String[] cidades = {"São Paulo", "Rio de Janeiro", "Salvador", "Ouro Preto", "Niterói"};
+			Scanner scanner = new Scanner(System.in);
+			
+			try {
+				System.out.print("Digite um número de 0 a 4 para selecionar a cidade:  ");
+				int num = scanner.nextInt();
+				
+				System.out.println("Cidade Selecionada: " + cidades[num]);
+				
+			}catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Erro: número selecionado inexistente!Por favor, escolha um número de 0 a 4.");
+			}finally {
+				scanner.close();
+			}
+		}
+	}
+
